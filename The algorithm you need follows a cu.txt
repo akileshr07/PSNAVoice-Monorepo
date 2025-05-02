@@ -1,0 +1,51 @@
+The algorithm you need follows a **customized version of Reddit's Hot Ranking Algorithm** but with added rules to **dump (remove) low-quality complaints**. The approach consists of:
+
+### **Key Rules for Sorting and Filtering:**
+1. **Prioritize complaints with high upvotes** (more support means higher ranking).
+2. **Give preference to recent complaints** (newer posts should appear first).
+3. **If (downvotes ≥ 60% of total votes), dump the complaint** (removes unwanted complaints).
+4. **If a post has very low interaction (few votes & comments) and is older than 30 days, dump it** (removes stale complaints).
+
+---
+
+## **Sorting Algorithm:**
+This is similar to **Reddit's Hot Algorithm** but adjusted for your needs.
+
+### **Formula:**
+\[
+score = (upvotes - downvotes) + (comments \times 2) + \frac{100}{age\ in\ hours + 2}
+\]
+
+### **How It Works:**
+- **More upvotes increase the ranking.**
+- **Comments have weight (×2) to promote discussions.**
+- **Recent posts get a boost, but older posts decay gradually.**
+- **Older posts with little interaction are removed automatically.**
+- **Posts with too many downvotes (≥ 60% of total votes) are dumped.**
+
+---
+
+## **Filtering (Removing Low-Quality Complaints)**
+Before ranking, apply these filters:
+
+### **1. Remove Highly Downvoted Complaints**
+\[
+if\ \left(\frac{downvotes}{upvotes + downvotes} \geq 0.6\right) \Rightarrow \text{REMOVE post}
+\]
+➡️ If **60% or more votes are downvotes**, remove the complaint.
+
+### **2. Remove Old, Inactive Complaints**
+\[
+if\ (total\ votes + comments < 5) \text{ AND } (post\ age > 30\ days) \Rightarrow \text{REMOVE post}
+\]
+➡️ If a post has **very low interaction** (less than 5 votes/comments combined) and is **older than 30 days**, remove it.
+
+---
+
+## **Algorithm Used:**
+This approach combines:
+1. **Reddit’s Hot Algorithm (Sorting by votes, comments, and recency)**
+2. **YouTube’s Engagement Model (Giving comments extra weight)**
+3. **Filtering Techniques (Downvote % threshold + Aging out inactive posts)**
+
+Would you like a **JavaScript or Python implementation** for this algorithm? 🚀

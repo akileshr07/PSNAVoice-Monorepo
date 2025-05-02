@@ -1,0 +1,144 @@
+# **PSNA Student Feedback Platform**
+
+## **Problem Statement**
+Students in colleges often hesitate to report academic issues, campus facility concerns, or other grievances due to fear or privacy concerns. To address this, we propose the **PSNA Complaints Website**, a digital platform that enables students to voice their complaints openly or anonymously.
+
+---
+## **Platform Features**
+✅ **Complaint Submission**: Students can post complaints with their **name and department** or choose to remain **anonymous**.  
+✅ **Complaint Feed**: A scrollable list displaying submitted complaints, visible to both students and faculty.  
+✅ **Voting System**: Each complaint can be **upvoted (👍)** or **downvoted (👎)** (one vote per user) to highlight important issues.  
+✅ **Comment Section**: Users can engage in discussions through comments.  
+✅ **Sorting Mechanism**: Complaints with the most **upvotes and comments** appear at the top.  
+✅ **Navigation Bar**: Includes the website title **"PSNA Complaints"**, a **mock college logo**, and a **"Post Complaint"** button in the top-right corner for submitting new complaints.  
+✅ **Seamless Navigation**: A **Back to Home** button allows users to explore complaints after posting.  
+
+---
+## **Complaint Submission Form**
+When submitting a complaint, students must provide:
+
+🔹 **Name & Department (Optional)**: Can be left blank for anonymous submissions.  
+🔹 **To (Mandatory)**: Select the relevant department or authority from the options:  
+   - ECE  
+   - CSE  
+   - IT  
+   - BME  
+   - MECH  
+   - CIVIL  
+   - College Management  
+   - **Custom Option** (e.g., Library, Transport, Cleaning Dept, etc.)  
+🔹 **Title of the Complaint (Optional)**: A short, descriptive title (max 20 words).  
+🔹 **Complaint Description (Mandatory)**: A detailed explanation of the issue.  
+
+Upon submitting, the user is redirected to the **home feed** displaying all complaints.
+
+---
+## **Homepage Layout**
+### **Header & Navigation Bar**
+- **Left Corner**: A **mock college logo** with the text **"PSNA Complaints"** (stylized with light humor elements).  
+- **Middle Section**: Website title displayed prominently.  
+- **Right Corner**: **"Post Complaint"** button, redirecting users to the complaint form.  
+
+### **Complaint Display Format**
+Each complaint is structured as follows:
+1️⃣ **Department/Authority (Bold Font)**: Clearly indicates the relevant department or authority.  
+2️⃣ **Title (If Provided)**: Displayed in a larger, prominent font. If omitted, leave a slight gap.  
+3️⃣ **Complaint Content**: Shown in a familiar, easy-to-read font style, similar to popular platforms.  
+4️⃣ **User Actions**:
+   - **Upvote (Green 👍 Button)**
+   - **Downvote (Red 👎 Button)**
+   - **Comment (💬 Icon Button)**
+
+### **Footer**
+📌 **Website Motto (Displayed in Quote Format)**:
+*"Fearlessly voice your complaints. Your information is not monitored. Be respectful to faculty and college—the foundation of your future success."*  
+📌 **Copyright Notice**:
+📅 **© 2022 - All Rights Reserved.**  
+💡 **Website Designed & Developed by Alumni.**  
+
+---
+## **Comment Section**
+After clicking the **comment button**, users can:
+- **Add comments** (displayed exactly like YouTube's comment section).
+- **View all comments** posted under that complaint.
+- **Reply to comments**, with nested replies indented.
+- **Upvote or downvote comments**, allowing engagement like in posts.
+
+Each comment contains:
+- **User’s name (or Anonymous)**
+- **Time stamp (e.g., "4h ago")**
+- **Comment text** (regular font, not bold)
+- **Reply button** for further discussion.
+
+---
+## **Sorting Algorithm**
+A **customized version of Reddit's Hot Ranking Algorithm** with added rules to **remove low-quality complaints**.
+
+### **Key Sorting & Filtering Rules**
+1. **Prioritize complaints with high upvotes** (more support = higher ranking).
+2. **Give preference to recent complaints** (newer posts appear first).
+3. **If (downvotes ≥ 60% of total votes), remove the complaint**.
+4. **If a post has very low interaction (few votes & comments) and is older than 30 days, remove it**.
+
+### **Sorting Formula:**
+\[
+score = (upvotes - downvotes) + (comments \times 2) + \frac{100}{age\ in\ hours + 2}
+\]
+
+### **How It Works:**
+- **More upvotes increase the ranking**.
+- **Comments have weight (×2) to promote discussions**.
+- **Recent posts get a boost, but older posts decay gradually**.
+- **Older posts with little interaction are removed automatically**.
+- **Posts with too many downvotes (≥ 60% of total votes) are dumped**.
+
+### **Filtering Rules**
+#### **1. Remove Highly Downvoted Complaints**
+\[
+if\ \left(\frac{downvotes}{upvotes + downvotes} \geq 0.6\right) \Rightarrow \text{REMOVE post}
+\]
+➡️ If **60% or more votes are downvotes**, remove the complaint.
+
+#### **2. Remove Old, Inactive Complaints**
+\[
+if\ (total\ votes + comments < 5)\ \text{AND}\ (post\ age > 30\ days) \Rightarrow \text{REMOVE post}
+\]
+➡️ If a post has **very low interaction** (less than 5 votes/comments combined) and is **older than 30 days**, remove it.
+
+---
+## **Voting System Implementation**
+### **Using Browser Cookies (Simple & Lightweight Approach)**
+- When a user votes on a post (upvote/downvote), store their vote in a **cookie**.
+- The cookie contains **post ID** and **vote type**.
+- If the user tries to vote again on the same post, **check the cookie and prevent multiple votes**.
+
+🟢 **Pros:**
+- No login required.
+- Works across browser sessions (until cookie expires).
+
+🔴 **Cons:**
+- Users can clear cookies and vote again.
+- Not effective for users in incognito mode or switching browsers.
+
+---
+## **Post Layout (Feed Section)**
+### **Header (Small Font, Light Gray Color)**
+- Displays **posting user's name** (optional for anonymity).
+- **Time stamp** (e.g., "5 hr ago", "1 hour ago", "Just now")—similar to YouTube.
+- **Department or Custom Category** (e.g., "To: ECE, CSE, IT, College Management").
+
+### **Title (Bold Font, Larger Size)**
+- If provided, appears in **bold**.
+- Helps grab attention and improve readability.
+
+### **Content (Slightly Bold, Regular Font Size)**
+- Complaint details appear in a slightly lighter **bold** font.
+
+### **Interaction Elements (Small Icons/Text)**
+- **Upvote & Downvote:** One vote per user.
+- **Comment Section:** "Add a Comment" button + comment count indicator (e.g., "18 comments").
+- **Share Button:** Allows users to share complaint links.
+
+---
+This document provides a **structured overview** of your platform, ensuring clarity and efficiency. 🚀
+
