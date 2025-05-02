@@ -1,0 +1,12 @@
+1. Using Browser Cookies (Simple & Lightweight)
+When a user votes on a post (upvote or downvote), store their vote in a cookie.
+The cookie will contain the post ID and the vote type (upvote/downvote).
+If the user tries to vote again on the same post, check the cookie and prevent multiple votes.
+🟢 Pros:
+
+No login required.
+Works across browser sessions for a limited time (until the cookie expires).
+🔴 Cons:
+
+Users can clear cookies and vote again.
+Not effective against users who use incognito mode or different browsers.

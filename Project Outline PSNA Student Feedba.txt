@@ -1,0 +1,155 @@
+Project Outline: PSNA Student Feedback Platform
+Tech Stack:
+
+Frontend: HTML, Tailwind CSS, ReactJS
+Backend: Java, Spring Boot with Gradle
+Database: MySQL
+1. Project Setup
+Frontend Setup (ReactJS + Tailwind CSS)
+Initialize React Project
+
+Create a new React app using Vite or CRA.
+Install Tailwind CSS for styling.
+Project Structure
+
+pgsql
+Copy
+Edit
+/frontend
+├── public/
+├── src/
+│   ├── components/ (Reusable components)
+│   ├── pages/ (Main pages)
+│   ├── services/ (API calls)
+│   ├── hooks/ (Custom React Hooks)
+│   ├── context/ (Global state management)
+│   ├── App.jsx
+│   ├── main.jsx
+├── tailwind.config.js
+├── package.json
+└── index.html
+Install Dependencies
+
+react-router-dom (for navigation)
+axios (for API requests)
+react-icons (for UI icons)
+Integrate Tailwind CSS
+
+Configure Tailwind in tailwind.config.js
+Use Tailwind utility classes for styling
+Backend Setup (Spring Boot + Gradle + Java + MySQL)
+Initialize Spring Boot Project
+
+Create a new Spring Boot project with Gradle.
+Add dependencies:
+Spring Web (REST API)
+Spring Data JPA (Database)
+MySQL Driver
+Project Structure
+
+css
+Copy
+Edit
+/backend
+├── src/main/java/com/psna/
+│   ├── config/ (Security Config)
+│   ├── controller/ (REST APIs)
+│   ├── service/ (Business Logic)
+│   ├── repository/ (Database Queries)
+│   ├── model/ (Entities)
+│   ├── dto/ (Data Transfer Objects)
+│   ├── PSNAFeedbackApplication.java
+├── src/main/resources/
+│   ├── application.properties (Database Configuration)
+├── build.gradle
+└── settings.gradle
+Database Configuration (MySQL)
+
+Set up application.properties:
+ini
+Copy
+Edit
+spring.datasource.url=jdbc:mysql://localhost:3306/psna_feedback
+spring.datasource.username=root
+spring.datasource.password=password
+spring.jpa.hibernate.ddl-auto=update
+2. Feature Implementation
+Frontend Features (ReactJS & Tailwind CSS)
+1️⃣ Navigation Bar
+Includes logo, website title, and "Post Complaint" button.
+2️⃣ Complaint Submission Page
+Form with fields:
+Name & Department (Optional)
+Complaint Receiver (Dropdown)
+Title (Optional, max 20 words)
+Description (Mandatory)
+Button to submit complaint → Redirects to home page
+3️⃣ Homepage - Complaint Feed
+Display list of complaints.
+Sorting based on upvotes, comments, and time.
+Complaints displayed in card format:
+Department (bold)
+Title (large font)
+Description (readable font)
+User Actions: Upvote (👍), Downvote (👎), Comment (💬)
+4️⃣ Voting System (Using Cookies)
+One vote per user stored in cookies.
+5️⃣ Comment System
+Comments displayed in a YouTube-style thread.
+Replies are nested with indentation.
+Upvote/downvote feature for comments.
+Backend Features (Spring Boot + Java + MySQL)
+1️⃣ User Model (Anonymous or Identified)
+Attributes:
+id, name, department, isAnonymous
+2️⃣ Complaint Model
+Attributes:
+id, title, description, department, postedBy, createdAt, upvotes, downvotes, comments
+3️⃣ Comment Model
+Attributes:
+id, complaintId, text, postedBy, createdAt, upvotes, downvotes
+4️⃣ API Endpoints
+Method	Endpoint	Description
+POST	/complaints	Submit new complaint
+GET	/complaints	Get all complaints
+GET	/complaints/{id}	Get complaint by ID
+POST	/complaints/{id}/vote	Upvote/downvote complaint
+POST	/complaints/{id}/comments	Add comment
+GET	/complaints/{id}/comments	Get comments for a complaint
+5️⃣ Sorting Algorithm (Custom Reddit Hot Algorithm)
+Sort complaints by:
+Upvotes (higher = top)
+Comments (weight ×2)
+Time decay (older complaints drop)
+Low interaction + 30 days = auto-remove
+Filtering:
+Remove complaints with 60% downvotes.
+Remove inactive complaints after 30 days.
+3. Integration (Connecting Frontend & Backend)
+Frontend → Backend Communication (Axios API Calls)
+Fetch complaints from /complaints endpoint.
+Submit complaints via POST /complaints.
+Send votes via POST /complaints/{id}/vote.
+Fetch comments from /complaints/{id}/comments.
+4. Deployment Plan
+Frontend Deployment
+Use Vercel or Netlify for hosting React frontend.
+Backend Deployment
+Deploy Spring Boot backend using Render, Railway, or AWS.
+Host MySQL database on AWS RDS or Railway.
+Domain & Hosting
+Register a free domain via GitHub Pages or Netlify.
+5. Future Enhancements
+✅ Admin Panel: Monitor complaints & remove inappropriate content.
+✅ Authentication System: Allow login-based voting & complaint submission.
+✅ Email Notifications: Notify students when their complaint is addressed.
+
+Conclusion
+This outline provides a structured approach to building the PSNA Student Feedback Platform using ReactJS, Tailwind CSS, Spring Boot (Gradle), Java, and MySQL. Let me know if you need detailed breakdowns of any section! 🚀
+
+
+
+
+
+
+
