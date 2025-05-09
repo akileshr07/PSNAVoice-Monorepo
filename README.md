@@ -112,3 +112,8 @@ From a technical perspective, the frontend is developed using ReactJS and Tailwi
 To manage voting without logins, the system uses browser cookies to store a user's vote per complaint, limiting users to a single upvote or downvote per post. While not foolproof (as users can clear cookies), it offers a lightweight, session-persistent solution.
 
 The project aims to instill a culture of transparent feedback and collaborative problem-solving while ensuring user privacy and content moderation. It acts as a bridge between students and faculty/administration, promoting accountability and positive change within the college ecosystem.
+
+TESTING
+SPRING BOOT ERR-  https://chatgpt.com/share/681dd4ea-38fc-8001-8c1c-71d0d9f657a9
+CONNECT FRO-BAC-  https://chatgpt.com/share/681dd549-f01c-8001-aee0-35a69bee6af7
+
