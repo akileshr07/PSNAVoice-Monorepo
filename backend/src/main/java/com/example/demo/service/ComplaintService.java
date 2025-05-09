@@ -21,7 +21,7 @@ public class ComplaintService {
 
     // ✅ Save a complaint with current timestamp
     public Complaint save(Complaint complaint) {
-        complaint.setTimestamp(LocalDateTime.now());
+        complaint.setCreatedAt(LocalDateTime.now());
         return repo.save(complaint);
     }
 

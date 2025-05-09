@@ -15,7 +15,7 @@ public class Complaint {
     private String department;
     private String content;
     private String authorName;
-    private LocalDateTime timestamp;
+    private LocalDateTime createdAt;
     private int upvotes;
     private int downvotes;
 }
