@@ -1,3 +1,4 @@
+//index
 import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { MessageSquare, Building2, ChevronDown, ChevronUp } from 'lucide-react';

@@ -15,7 +15,9 @@ const Footer: React.FC = () => {
           <div className="flex items-center justify-center text-gray-400 text-sm">
             <span>Made with</span>
             <Heart className="h-4 w-4 mx-1 text-red-500" />
-            <span>by PSNA Students</span>
+            <span>
+              by <strong className="text-gray-700">Akilesh R</strong>
+            </span>
           </div>
         </div>
       </div>
