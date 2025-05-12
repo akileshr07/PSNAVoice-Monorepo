@@ -27,15 +27,13 @@ public class ComplaintController {
         return service.save(complaint);
     }
 
-    // ✅ PATCH a vote (upvote or downvote)
+    // ✅ PATCH a vote (accepts upvotes and downvotes from frontend)
     @PatchMapping("/{id}/vote")
-    public Complaint vote(@PathVariable Long id, @RequestParam String type) {
-        Complaint complaint = service.findById(id);
-        if ("up".equalsIgnoreCase(type)) {
-            complaint.setUpvotes(complaint.getUpvotes() + 1);
-        } else {
-            complaint.setDownvotes(complaint.getDownvotes() + 1);
-        }
-        return service.save(complaint);
+    public Complaint updateVotes(@PathVariable Long id, @RequestBody Complaint updatedData) {
+        Complaint existing = service.findById(id);
+        existing.setUpvotes(Math.max(0, updatedData.getUpvotes()));
+        existing.setDownvotes(Math.max(0, updatedData.getDownvotes()));
+        return service.save(existing);
     }
+
 }

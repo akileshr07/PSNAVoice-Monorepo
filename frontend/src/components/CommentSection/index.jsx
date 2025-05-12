@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
-//API
+
 const CommentSection = ({ complaintId }) => {
   const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    fetchComments();
-  }, [complaintId]);
 
   const fetchComments = async () => {
     try {
@@ -20,6 +16,10 @@ const CommentSection = ({ complaintId }) => {
     }
   };
 
+  useEffect(() => {
+    fetchComments();
+  }, [complaintId]);
+
   const handleSubmitComment = async (content, parentId = null) => {
     try {
       const response = await fetch(`http://localhost:8083/api/complaints/${complaintId}/comments`, {
@@ -30,8 +30,8 @@ const CommentSection = ({ complaintId }) => {
 
       if (!response.ok) throw new Error('Failed to submit comment');
 
-      const newComment = await response.json();
-      setComments((prev) => [...prev, newComment]);
+      // Instead of appending the response, re-fetch the updated comment list
+      await fetchComments();
     } catch (error) {
       console.error('Failed to submit comment:', error);
     }
@@ -49,18 +49,8 @@ const CommentSection = ({ complaintId }) => {
 
       if (!response.ok) throw new Error('Failed to vote on comment');
 
-      // Optionally update the local state after vote
-      setComments((prevComments) =>
-        prevComments.map((c) =>
-          c.id === commentId
-            ? {
-                ...c,
-                upvotes: isUpvote ? c.upvotes + 1 : c.upvotes,
-                downvotes: !isUpvote ? c.downvotes + 1 : c.downvotes,
-              }
-            : c
-        )
-      );
+      // Re-fetch comments after voting to reflect updated votes
+      await fetchComments();
     } catch (error) {
       console.error('Failed to vote on comment:', error);
     }

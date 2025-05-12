@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByComplaintId(Long complaintId);
+    // Count the comments by complaint ID
+    long countByComplaintId(Long complaintId);
 }

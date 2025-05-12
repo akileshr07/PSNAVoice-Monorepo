@@ -3,6 +3,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
+import jakarta.persistence.Transient;  // Use @Transient for a non-persistent field
 
 import java.time.LocalDateTime;
 
@@ -18,4 +19,7 @@ public class Complaint {
     private LocalDateTime createdAt;
     private int upvotes;
     private int downvotes;
+
+    @Transient  // This annotation prevents commentCount from being stored in the database
+    private long commentCount;  // Store the comment count here
 }

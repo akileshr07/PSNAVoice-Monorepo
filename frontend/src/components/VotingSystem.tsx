@@ -1,3 +1,4 @@
+//VotingSystem.tsx
 import React, { useState, useEffect } from 'react';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import Cookies from 'js-cookie';
@@ -15,11 +16,19 @@ const VotingSystem: React.FC<VotingSystemProps> = ({ upvotes: initialUpvotes, do
   const [voteState, setVoteState] = useState<VoteState>({ upvoted: false, downvoted: false });
 
   useEffect(() => {
-    const savedVote = Cookies.get(`vote_${itemId}`);
-    if (savedVote) {
-      setVoteState(JSON.parse(savedVote));
-    }
-  }, [itemId]);
+  const savedVote = Cookies.get(`vote_${itemId}`);
+  if (savedVote) {
+    const parsed = JSON.parse(savedVote);
+    setVoteState(parsed);
+
+    // Adjust local vote count based on cookie
+    setVotes(prev => ({
+      upvotes: parsed.upvoted ? prev.upvotes + 1 : prev.upvotes,
+      downvotes: parsed.downvoted ? prev.downvotes + 1 : prev.downvotes,
+    }));
+  }
+}, [itemId]);
+
 
   const handleVote = async (isUpvote: boolean) => {
     const newVoteState = { ...voteState };
