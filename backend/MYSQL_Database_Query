@@ -42,3 +42,13 @@ SELECT * FROM complaint;
 SELECT * FROM comment;
 
 ALTER TABLE complaint MODIFY content TEXT;
+
+
+-- testing
+SHOW TABLES;
+SELECT * FROM comment;
+SELECT * FROM comment_seq;
+SELECT * FROM complaint;
+SELECT * FROM complaint_seq;
+
+
